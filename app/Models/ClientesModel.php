@@ -12,7 +12,7 @@ class ClientesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre', 'correo', 'nombre_empresa', 'estado_id', 'logotipo', 'descripcion_producto', 'fecha_registro'];
+    protected $allowedFields    = ['nombre_contacto', 'correo_electronico', 'nombre_empresa', 'estado_id', 'logotipo', 'descripcion_producto', 'fecha_registro'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +21,7 @@ class ClientesModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

@@ -51,39 +51,41 @@ class Clientes extends BaseController
      */
     public function create()
     {
-        $clientesModel = new ClientesModel();
+      
 
     
             // Definir las reglas básicas
             $rules = [
-                'nombre_contacto' => 'required|max_length[255]',
-                'correo_electronico' => 'required|valid_email|max_length[255]|is_unique[clientes.correo_electronico]',
-                'nombre_empresa' => 'required|max_length[255]|is_unique[clientes.nombre_empresa]',
+                'nombre_contacto' => 'required',
+                'correo_electronico' => 'required|valid_email|max_length[255]|',
+                'nombre_empresa' => 'required',
                 'estado_id' => 'required|is_not_unique[estados.id]',
-                'logotipo' => 'uploaded[logotipo]|max_size[logotipo,1024]|is_image[logotipo]|mime_in[logotipo,image/jpg,image/jpeg,image/gif,image/png]',
-                'descripcion_producto' => 'permit_empty',
-                'fecha_registro' => 'permit_empty|valid_date',
+                'logotipo' => 'required',//'uploaded[logotipo]|max_size[logotipo,1024]|is_image[logotipo]|mime_in[logotipo,image/jpg,image/jpeg,image/gif,image/png]',
+                'descripcion_producto' => 'required',//'permit_empty',
+                'fecha_registro' => 'valid_date',//'permit_empty|valid_date',
             ];
 
             // Validar las reglas básicas
             if (!$this->validate($rules)) {
-                return redirect()->back()->withInput()->with('errors', $this->validator->listErrors()); //listErrors()) ??
+                return redirect()->back()->withInput()->with('error', $this->validator->listErrors()); //listErrors()) ??
             }
 
-            // //de vid
-            // $post = $this->request->getPost(['nombre_contacto', 'correo_electronico', 'nombre_empresa','estado_id', 'logotipo','descripcion_producto','fecha_registro']); 
+            //de vid
+            $post = $this->request->getPost(['nombre_contacto', 'correo_electronico', 'nombre_empresa','estado_id', 'logotipo','descripcion_producto','fecha_registro']);
+            
+            $clientesModel = new ClientesModel();
 
-            // $clientesModel->insert([
-            //         'nombre_contacto' => $post['nombre_contacto'],
-            //         'correo_electronico' => $post['correo_electronico'],
-            //         'nombre_empresa' => $post['nombre_empresa'],
-            //         'estado_id' => $post['estado_id'],
-            //         'logotipo' => $post['logotipo'],
-            //         'descripcion_producto' => $post['descripcion_producto'],
-            //         'fecha_registro' => $post['fecha_registro'],
-            // ]); 
+            $clientesModel->insert([
+                    'nombre_contacto' => trim($post['nombre_contacto']),
+                    'correo_electronico' =>$post['correo_electronico'],
+                    'nombre_empresa' => $post['nombre_empresa'],
+                    'estado_id' => $post['estado_id'],
+                    'logotipo' => $post['logotipo'],
+                    'descripcion_producto' => $post['descripcion_producto'],
+                    'fecha_registro' => $post['fecha_registro'],
+            ]); 
 
-            // return redirect()->to('clientes')->with('success', 'Cliente creado exitosamente');
+            return redirect()->to('clientes');
             
             
 
@@ -93,51 +95,52 @@ class Clientes extends BaseController
 
 
             // Verificar la condición personalizada
-            $estadoId = $this->request->getPost('estado_id');
-            $descripcionProducto = $this->request->getPost('descripcion_producto');
-            $fechaRegistro = $this->request->getPost('fecha_registro');
+            // $estadoId = $this->request->getPost('estado_id');
+            // $descripcionProducto = $this->request->getPost('descripcion_producto');
+            // $fechaRegistro = $this->request->getPost('fecha_registro');
             
             // Asumiendo que el ID de Ciudad de México es 1
-            if ($estadoId == 1) {
-                $errors = [];
-                if (empty($descripcionProducto)) {
-                    $errors['descripcion_producto'] = 'Descripción del producto es requerida para Ciudad de México.';
-                }
-                if (empty($fechaRegistro)) {
-                    $errors['fecha_registro'] = 'Fecha de registro es requerida para Ciudad de México.';
-                }
-                if (!empty($errors)) {
-                    return redirect()->back()->withInput()->with('errors', $errors);
-                }
-            }
+            // if ($estadoId == 1) {
+            //     $errors = [];
+            //     if (empty($descripcionProducto)) {
+            //         $errors['descripcion_producto'] = 'Descripción del producto es requerida para Ciudad de México.';
+            //     }
+            //     if (empty($fechaRegistro)) {
+            //         $errors['fecha_registro'] = 'Fecha de registro es requerida para Ciudad de México.';
+            //     }
+            //     if (!empty($errors)) {
+            //         return redirect()->back()->withInput()->with('errors', $errors);
+            //     }
+            // }
 
-            $file = $this->request->getFile('logotipo');
-            if ($file->isValid() && !$file->hasMoved()) {
-                $newName = $file->getRandomName();
-                $file->move(WRITEPATH . 'uploads', $newName);
-            }
+            // $file = $this->request->getFile('logotipo');
+            // if ($file->isValid() && !$file->hasMoved()) {
+            //     $newName = $file->getRandomName();
+            //     $file->move(WRITEPATH . 'uploads', $newName);
+            // } else {
+            //     $newName = null;
+            // }
 
-            $data = [
-                'nombre_contacto' => $this->request->getPost('nombre_contacto'),
-                'correo_electronico' => $this->request->getPost('correo_electronico'),
-                'nombre_empresa' => $this->request->getPost('nombre_empresa'),
-                'estado_id' => $estadoId,
-                'logotipo' => isset($newName) ? $newName : null,
-                'descripcion_producto' => $descripcionProducto,
-                'fecha_registro' => $fechaRegistro,
-            ];
+            // $data = [
+            //     'nombre_contacto' => $this->request->getPost('nombre_contacto'),
+            //     'correo_electronico' => $this->request->getPost('correo_electronico'),
+            //     'nombre_empresa' => $this->request->getPost('nombre_empresa'),
+            //     'estado_id' => $estadoId,
+            //     'logotipo' =>  $newName,
+            //     'descripcion_producto' => $descripcionProducto,
+            //     'fecha_registro' => $fechaRegistro,
+            // ];
 
-            if ($clientesModel->insert($data)) {
+            // if ($clientesModel->insert($data)) {
 
-                return redirect()->to('clientes')->with('success', 'Cliente creado exitosamente');
-            } else {
+            //     return redirect()->to('clientes')->with('success', 'Cliente creado exitosamente');
+            // } else {
 
-                return redirect()->back()->withInput()->with('error', 'Hubo un problema al crear el cliente');
-            }
+            //     return redirect()->back()->withInput()->with('error', 'Hubo un problema al crear el cliente');
+            // }
 
             
-        
-        return redirect()->back()->withInput()->with('error', 'Hubo un problema al crear el cliente');
+            
     }
 
 
