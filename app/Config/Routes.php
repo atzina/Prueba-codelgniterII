@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-//$routes->get('clientes', 'Clientes::index');
-//$routes->get('clientes/new', 'Clientes::new');
+$routes->get('clientes', 'Clientes::index');
+$routes->get('clientes/new', 'Clientes::new');
 
 $routes->resource('clientes', ['placeholder' => '(:num)', 'except' => 'show']);

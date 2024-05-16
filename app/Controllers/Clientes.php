@@ -53,13 +53,13 @@ class Clientes extends BaseController
     {
         $clientesModel = new ClientesModel();
 
-        if ($this->request->getMethod() === 'post') {
+    
             // Definir las reglas básicas
             $rules = [
                 'nombre_contacto' => 'required|max_length[255]',
                 'correo_electronico' => 'required|valid_email|max_length[255]|is_unique[clientes.correo_electronico]',
                 'nombre_empresa' => 'required|max_length[255]|is_unique[clientes.nombre_empresa]',
-                'estado_id' => 'required|integer',
+                'estado_id' => 'required|is_not_unique[estados.id]',
                 'logotipo' => 'uploaded[logotipo]|max_size[logotipo,1024]|is_image[logotipo]|mime_in[logotipo,image/jpg,image/jpeg,image/gif,image/png]',
                 'descripcion_producto' => 'permit_empty',
                 'fecha_registro' => 'permit_empty|valid_date',
@@ -67,8 +67,30 @@ class Clientes extends BaseController
 
             // Validar las reglas básicas
             if (!$this->validate($rules)) {
-                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                return redirect()->back()->withInput()->with('errors', $this->validator->listErrors()); //listErrors()) ??
             }
+
+            // //de vid
+            // $post = $this->request->getPost(['nombre_contacto', 'correo_electronico', 'nombre_empresa','estado_id', 'logotipo','descripcion_producto','fecha_registro']); 
+
+            // $clientesModel->insert([
+            //         'nombre_contacto' => $post['nombre_contacto'],
+            //         'correo_electronico' => $post['correo_electronico'],
+            //         'nombre_empresa' => $post['nombre_empresa'],
+            //         'estado_id' => $post['estado_id'],
+            //         'logotipo' => $post['logotipo'],
+            //         'descripcion_producto' => $post['descripcion_producto'],
+            //         'fecha_registro' => $post['fecha_registro'],
+            // ]); 
+
+            // return redirect()->to('clientes')->with('success', 'Cliente creado exitosamente');
+            
+            
+
+            
+
+            
+
 
             // Verificar la condición personalizada
             $estadoId = $this->request->getPost('estado_id');
@@ -114,9 +136,8 @@ class Clientes extends BaseController
             }
 
             
-        }
-
-        //return view('clientes');
+        
+        return redirect()->back()->withInput()->with('error', 'Hubo un problema al crear el cliente');
     }
 
 

@@ -40,8 +40,8 @@
     <form action="<?= base_url('clientes') ?>" class="row g-3" method="post" autocomplete="off">
 
                 <div class="col-md-8">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?= set_value('nombre') ?>" required>
+                    <label for="nombre_contacto" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre_contacto" name="nombre_contacto" value="<?= set_value('nombre_contacto') ?>" required>
                 </div>
 
                 <div class="col-md-8">
@@ -52,10 +52,24 @@
                     <label for="nombre_empresa" class="form-label">Nombre de Empresa</label>
                     <input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa" value="<?= set_value('nombre_empresa') ?>" required>
                 </div>
+
+                <div class="col-md-8">
+                    <label for="estado_id" class="form-label">Estado</label>
+                    <select class="form-select" id="estado_id" name="estado_id">
+                        <option value="">Seleccionar</option>
+                        <?php foreach($estados as $estado): ?>
+                            <option value="<?= $estado['id']; ?>"><?= $estado['nombre']; ?> </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div> 
+
                 <div class="col-md-8">
                     <label for="logotipo" class="form-label">Logotipo</label>
                     <input type="file" class="form-control" id="logotipo" name="logotipo">
                 </div>
+
+               
+
                 <div class="col-md-8">
                     <label for="descripcion_producto" class="form-label">Descripción del Producto</label>
                     <input type="text" class="form-control" id="descripcion_producto" name="descripcion_producto" value="<?= set_value('descripcion_producto') ?>">
@@ -69,15 +83,7 @@
                 
 
 
-                <div class="col-md-8">
-                    <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado">
-                        <option value="">Seleccionar</option>
-                        <?php foreach($estados as $estado): ?>
-                            <option value="<?= $estado['id']; ?>"><?= $estado['nombre']; ?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                
 
                 <div class="col-12">
                     <a href="<?= base_url('clientes');?>" class="btn btn-secondary">Regresar</a>
