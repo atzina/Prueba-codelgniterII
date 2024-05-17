@@ -11,7 +11,7 @@
  <link href="css/estilo.css" rel="stylesheet">
     
 </head>
-<body>
+<body style="margin:20px;">
 
 <!-- HEADER: MENU + HEROE SECTION -->
 <header>
@@ -20,7 +20,7 @@
 
     <div class="heroe">
 
-        <h1>Prueba prototipo </h1>
+        <h1>Prospectos </h1>
 
         
 
@@ -30,10 +30,14 @@
 
 <!-- CONTENT -->
 
-<h3 class="my-3" id="titulo">Registros</h3>
+<!--<h3 class="my-3" id="titulo">Registros de empresas</h3> -->
 
-<a href="<?= base_url ('clientes/new'); ?>" class="btn btn-success">Agregar</a>
-
+<div class=div-btn-agregar style="
+display:flex;
+justify-content: flex-end;">
+<a href="<?= base_url ('clientes/new'); ?>" class="btn btn-light" style="font-size: 25px;
+">Agregar</a>
+</div>
 <table class="table table-hover table-bordered my-3" aria-describedby="titulo">
 
 
@@ -46,6 +50,7 @@
                         <th scope="col">Logotipo</th>
                         <th scope="col">Descripcipon</th>
                         <th scope="col">Fecha de registro</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
 
