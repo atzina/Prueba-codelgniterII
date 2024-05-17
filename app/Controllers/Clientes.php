@@ -17,7 +17,10 @@ class Clientes extends BaseController
      */
     public function index():string
     {
-        return view ('prototipo');
+        $clientesModel = new ClientesModel();
+        $data['clientes'] = $clientesModel->findAll();
+
+        return view ('prototipo', $data);
     }
 
     /**

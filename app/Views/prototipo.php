@@ -51,7 +51,23 @@
                 </thead>
 
                 <tbody>
+                 
+                <?php foreach($clientes as $cliente) : ?>
                     <tr>
+                        <td><?= $cliente['nombre_contacto']; ?></td>
+                        <td><?= $cliente['correo_electronico']; ?></td>
+                        <td><?= $cliente['nombre_empresa']; ?></td>
+                        <td><?= $cliente['estado_id']; ?></td>
+                        <td><?= $cliente['logotipo']; ?></td>
+                        <td><?= $cliente['descripcion_producto']; ?></td>
+                        <td><?= $cliente['fecha_registro']; ?></td>
+                        <td><?= $cliente['id']; ?></td>
+                    </tr>
+                
+                <?php endforeach; ?>
+
+
+                <!--    <tr>
                         <td>Juan Perez</td>
                         <td>juan@gmail.com</td>
                         <td>Correos de México</td>
@@ -65,7 +81,8 @@
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#eliminaModal" data-bs-id="1">Eliminar</button>
                         </td>
-                    </tr>
+                    </tr> -->
+                
 
                 </tbody>
             </table>
