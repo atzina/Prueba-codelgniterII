@@ -61,7 +61,7 @@ justify-content: flex-end;">
                             <td><?= $cliente['nombre_contacto']; ?></td>
                             <td><?= $cliente['correo_electronico']; ?></td>
                             <td><?= $cliente['nombre_empresa']; ?></td>
-                            <td><?= $cliente['estado_id']; ?></td>
+                            <td><?= $cliente['estado']; ?></td>
                             <td><?= $cliente['logotipo']; ?></td>
                             <td><?= $cliente['descripcion_producto']; ?></td>
                             <td><?= $cliente['fecha_registro']; ?></td>

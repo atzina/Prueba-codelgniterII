@@ -27,5 +27,12 @@ class ClientesModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
+    public function clientesEstado()
+    {
+        return $this->select('clientes.*, estados.nombre AS estado')
+        ->join('estados', 'clientes.estado_id = estados.id')
+        ->findAll();
+    }
+
 
 }

@@ -18,7 +18,7 @@ class Clientes extends BaseController
     public function index():string
     {
         $clientesModel = new ClientesModel();
-        $data['clientes'] = $clientesModel->findAll();
+        $data['clientes'] = $clientesModel->clientesEstado();
 
         return view ('prototipo', $data);
     }
