@@ -61,7 +61,11 @@
                         <td><?= $cliente['logotipo']; ?></td>
                         <td><?= $cliente['descripcion_producto']; ?></td>
                         <td><?= $cliente['fecha_registro']; ?></td>
-                        <td><?= $cliente['id']; ?></td>
+                        
+                        <td>
+                            <a href="<?= base_url('clientes/'.$cliente['id'].'/edit'); ?>" class="btn btn-light btn-sm me-2">Editar</a>
+                            
+                        </td>    
                     </tr>
                 
                 <?php endforeach; ?>

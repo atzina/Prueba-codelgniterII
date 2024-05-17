@@ -43,7 +43,8 @@ class Clientes extends BaseController
     public function new()
     {
         $estadosModel = new EstadosModel();
-        $data['estados']= $estadosModel->findAll(); 
+        $data['estados']= $estadosModel->findAll();
+
         return view('nuevo', $data);
     }
 
@@ -156,7 +157,17 @@ class Clientes extends BaseController
      */
     public function edit($id = null)
     {
-        //
+        if($id == null){
+            return redirect()->route('empleados');
+        } 
+
+        $clientesModel = new ClientesModel();
+        $estadosModel = new EstadosModel();
+
+        $data['estados']= $estadosModel->findAll();
+        $data['cliente']= $clientesModel->find($id);
+
+        return view('editar', $data);
     }
 
     /**
@@ -168,7 +179,7 @@ class Clientes extends BaseController
      */
     public function update($id = null)
     {
-        //
+       //
     }
 
     /**
