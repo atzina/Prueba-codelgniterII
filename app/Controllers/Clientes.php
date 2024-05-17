@@ -202,16 +202,16 @@ class Clientes extends BaseController
     //de vid
     $post = $this->request->getPost(['nombre_contacto', 'correo_electronico', 'nombre_empresa','estado_id', 'logotipo','descripcion_producto','fecha_registro']);
 
-    //    // Manejar la carga del archivo logotipo
-    //    $file = $this->request->getFile('logotipo');
-    //    if ($file && $file->isValid() && !$file->hasMoved()) {
-    //        $newName = $file->getRandomName();
-    //        $file->move(WRITEPATH . 'uploads', $newName);
-    //        $post['logotipo'] = $newName;
-    //    } else {
-    //        // Mantener el logotipo existente si no se ha subido uno nuevo
-    //        unset($post['logotipo']);
-    //    }
+       // Manejar la carga del archivo logotipo
+       $file = $this->request->getFile('logotipo');
+       if ($file && $file->isValid() && !$file->hasMoved()) {
+           $newName = $file->getRandomName();
+           $file->move(WRITEPATH . 'uploads', $newName);
+           $post['logotipo'] = $newName;
+       } else {
+           // Mantener el logotipo existente si no se ha subido uno nuevo
+           $post['logotipo'] = $this->request->getPost('logotipo_actual');
+       }
     
     $clientesModel = new ClientesModel();
 
