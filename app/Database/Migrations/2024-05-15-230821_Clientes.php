@@ -29,7 +29,7 @@ class Clientes extends Migration
             'nombre_empresa' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'unique' => true, // único en la base de datos
+                'unique' => false, // único en la base de datos
                 'null' => false, // requerido
             ],
             'estado_id' => [

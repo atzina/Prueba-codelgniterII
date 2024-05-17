@@ -237,6 +237,13 @@ class Clientes extends BaseController
      */
     public function delete($id = null)
     {
-        //
+        if (!$this->request->is('delete') || $id == null) {
+            return redirect()->route('clientes');
+        }
+
+        $clientesModel = new ClientesModel();
+        $clientesModel->delete($id);
+
+        return redirect()->to('clientes');
     }
 }
