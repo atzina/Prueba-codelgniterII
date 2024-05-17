@@ -10,6 +10,11 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link href="css/estilo.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
     
 </head>
 <body>
@@ -70,13 +75,13 @@
 
                
 
-                <div class="col-md-8">
+                <div class="col-md-8 hidden"  id="descripcion_producto_div">
                     <label for="descripcion_producto" class="form-label">Descripción del Producto</label>
                     <input type="text" class="form-control" id="descripcion_producto" name="descripcion_producto" value="<?= set_value('descripcion_producto') ?>">
                 </div>
 
-                <div class="col-md-8">
-                    <label for="fecha_registro" class="form-label">Fecha registro</label>
+                <div class="col-md-8 hidden" id="fecha_registro_div">
+                    <label for="fecha_registro hidden" class="form-label">Fecha registro</label>
                     <input type="date" class="form-control" id="fecha_registro" name="fecha_registro" value="<?= set_value('fecha_registro') ?>">
                 </div>
 
@@ -91,7 +96,22 @@
                 </div>
 
     </form>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    
+    <script>
+        $(document).ready(function() {
+            $('#estado_id').on('change', function() {
+                if ($(this).val() == 1) { // Asumiendo que el ID de Ciudad de México es 1
+                    $('#descripcion_producto_div').removeClass('hidden');
+                    $('#fecha_registro_div').removeClass('hidden');
+                } else {
+                    $('#descripcion_producto_div').addClass('hidden');
+                    $('#fecha_registro_div').addClass('hidden');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

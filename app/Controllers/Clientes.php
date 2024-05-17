@@ -65,8 +65,8 @@ class Clientes extends BaseController
                 'nombre_empresa' => 'required',
                 'estado_id' => 'required|is_not_unique[estados.id]',
                 'logotipo' => 'required',//'uploaded[logotipo]|max_size[logotipo,1024]|is_image[logotipo]|mime_in[logotipo,image/jpg,image/jpeg,image/gif,image/png]',
-                'descripcion_producto' => 'required',//'permit_empty',
-                'fecha_registro' => 'valid_date',//'permit_empty|valid_date',
+                'descripcion_producto' => 'permit_empty',
+                'fecha_registro' => 'permit_empty|valid_date',
             ];
 
             // Validar las reglas básicas
@@ -190,8 +190,8 @@ class Clientes extends BaseController
         'nombre_empresa' => 'required',
         'estado_id' => 'required|is_not_unique[estados.id]',
         'logotipo' => 'permit_empty',//'uploaded[logotipo]|max_size[logotipo,1024]|is_image[logotipo]|mime_in[logotipo,image/jpg,image/jpeg,image/gif,image/png]',
-        'descripcion_producto' => 'required',//'permit_empty',
-        'fecha_registro' => 'valid_date',//'permit_empty|valid_date',
+        'descripcion_producto' => 'permit_empty',
+        'fecha_registro' => 'valid_date','permit_empty',
     ];
 
     // Validar las reglas básicas
