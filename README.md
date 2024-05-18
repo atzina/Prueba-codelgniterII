@@ -17,9 +17,14 @@ Visualización de Logotipos: Actualmente, la visualización de logotipos asociad
 
 Error de Tipado en la Funcionalidad de Edición: Se ha identificado un error de tipado en la funcionalidad de edición. Este inconveniente, aunque no crítico, requiere una revisión y corrección para garantizar la integridad y consistencia de la aplicación.
 
+Responsividad de las interfaces: Se requiere una adaptación para garantizar una experiencia fluida en una amplia gama de dispositivos, desde computadoras de escritorio hasta dispositivos móviles.
+
 ## Futuras Mejoras y Pulido del Diseño
 
 Además de abordar las limitaciones actuales, se planea dedicar esfuerzos a pulir el diseño y la experiencia de usuario de la aplicación. Esto incluye la mejora de estilos visuales, la optimización de la disposición de elementos en la interfaz y la integración de prácticas de diseño centradas en el usuario.
 
 Se espera que estos esfuerzos de desarrollo futuro contribuyan a mejorar la calidad y usabilidad de la aplicación, alineándola con los estándares de diseño y experiencia de usuario del proyecto  al que pertenece este desarrollo.
 
+![Captura lista clienes](captura-lista.PNG)
+![Captura lista clienes](captura-add-cliente.PNG)
+![Captura lista clienes](captura-modificar-cliente.PNG)
